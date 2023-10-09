@@ -10,8 +10,11 @@ namespace BulkyWeb.Data
                 
         }
 
+        // Creates the Category table automatically.
         public DbSet<Category> Categories { get; set; }
 
+        // ModelBuilder class helps us view data.
+        // EF implements this by default to help us seed data into the database
         protected override void  OnModelCreating(ModelBuilder modelBuilder)
         {
             // creates these 3 records in the DB

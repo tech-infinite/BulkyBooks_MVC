@@ -8,6 +8,8 @@ namespace BulkyWeb.Migrations
     public partial class AddCategoryTableToDb : Migration
     {
         /// <inheritdoc />
+        /// If successful, it will create the table
+        
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -26,6 +28,8 @@ namespace BulkyWeb.Migrations
         }
 
         /// <inheritdoc />
+        /// Rolling back changes if anything goes wrong in the Up() method above
+
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
