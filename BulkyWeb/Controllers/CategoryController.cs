@@ -20,7 +20,7 @@ namespace BulkyWeb.Controllers
             // can access db sets categories which converts that to a list
             // this will then run the SQL statement to retrieve all categories from the table
             // and assign it to the objCategoryList variable
-            List<Category>objCategoryList = _db.Categories  .ToList();
+            List<Category>objCategoryList = _db.Categories.ToList();
             return View(objCategoryList); // passing categories to the view
         }
 
