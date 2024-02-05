@@ -10,6 +10,7 @@ namespace BulkyWeb.Migrations
         /// <inheritdoc />
         /// If successful, it will create the table
         
+        // Creates a table with a name 'Categories' and creates 3 columns 
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -32,6 +33,7 @@ namespace BulkyWeb.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            // drops the table if unsuccessful
             migrationBuilder.DropTable(
                 name: "Categories");
         }
