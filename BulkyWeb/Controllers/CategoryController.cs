@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BulkyWeb.Controllers
 {
@@ -46,12 +47,48 @@ namespace BulkyWeb.Controllers
                 _db.SaveChanges();
                 return RedirectToAction();
             }
+            return View(); 
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            
+            Category? dbCat = _db.Categories.Find(id);
+            Category? dbCat1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+            Category? dbCat2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+
+            if (dbCat == null)
+            {
+                return NotFound();
+            }
+            return View(dbCat);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category categoryObj)
+        {
+            if (categoryObj.Name == categoryObj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "Display Order cannot be the same as Name");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(categoryObj); // keeps track of what needs to be added
+
+                // goes to the DB and creates the category
+                // once the category is added, it will reload and pass it to the view
+                _db.SaveChanges();
+                return RedirectToAction();
+            }
             return View();
 
 
-            
-        }
 
+        }
 
     }
 }
